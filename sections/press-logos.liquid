@@ -1,0 +1,84 @@
+{% comment %}Press logos — "In The Press" heading, quote, logo strip{% endcomment %}
+<section class="press">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="press__title">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+    {% if section.settings.quote != blank %}
+      <p class="press__quote">&ldquo;{{ section.settings.quote | escape }}&rdquo;</p>
+    {% endif %}
+    {% if section.blocks.size > 0 %}
+      <ul class="press__logos">
+        {% for block in section.blocks %}
+          <li class="press__logo" {{ block.shopify_attributes }}>
+            {% if block.settings.logo != blank %}
+              <img src="{{ block.settings.logo | image_url: width: 400 }}"
+                   alt="{{ block.settings.name | default: 'Press logo' | escape }}"
+                   loading="lazy" width="400"
+                   height="{{ 400 | divided_by: block.settings.logo.aspect_ratio | round }}">
+            {% else %}
+              <span class="press__logo-text">{{ block.settings.name | default: 'PRESS' | escape }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Press logos",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "In The Press"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Featured press quote",
+      "default": "VelvetCurl Hydrate & Shine Shampoo is the go-to pick for the best dry-scalp shampoo!"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Press logo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Publication name",
+          "default": "The Beauty Edit"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image (optional — name renders as text if empty)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Article link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press logos",
+      "blocks": [
+        { "type": "logo", "settings": { "name": "The Beauty Edit" } },
+        { "type": "logo", "settings": { "name": "Curl Magazine" } },
+        { "type": "logo", "settings": { "name": "Modern Hair" } },
+        { "type": "logo", "settings": { "name": "Glow Daily" } },
+        { "type": "logo", "settings": { "name": "Texture Talk" } },
+        { "type": "logo", "settings": { "name": "Natural Beauty Weekly" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

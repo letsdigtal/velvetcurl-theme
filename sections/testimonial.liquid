@@ -1,0 +1,73 @@
+{% comment %}Testimonial — customer quote block with optional image and slider of multiple quotes{% endcomment %}
+<section class="testimonial">
+  <div class="page-width testimonial__inner">
+    <div class="testimonial__media">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 800 }}"
+             alt="{{ section.settings.image.alt | escape }}"
+             loading="lazy" width="800"
+             height="{{ 800 | divided_by: section.settings.image.aspect_ratio | round }}">
+      {% else %}
+        {% render 'placeholder-graphic', label: 'Customer', variant: 'c' %}
+      {% endif %}
+    </div>
+    <div class="testimonial__quotes" data-testimonial-slider>
+      {% for block in section.blocks %}
+        <blockquote class="testimonial__quote{% if forloop.first %} is-active{% endif %}" {{ block.shopify_attributes }}>
+          {% render 'icons', icon: 'quote' %}
+          <p class="testimonial__text">&ldquo;{{ block.settings.quote | escape }}&rdquo;</p>
+          <cite class="testimonial__author">&mdash; {{ block.settings.author | escape }}</cite>
+        </blockquote>
+      {% endfor %}
+      {% if section.blocks.size > 1 %}
+        <div class="testimonial__dots" role="tablist">
+          {% for block in section.blocks %}
+            <button type="button" class="testimonial__dot{% if forloop.first %} is-active{% endif %}" data-testimonial-dot="{{ forloop.index0 }}" aria-label="Show quote {{ forloop.index }}"></button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonial",
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "I feel like VelvetCurl helped me love my hair again."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Elizabeth B."
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial",
+      "blocks": [
+        { "type": "quote" },
+        { "type": "quote", "settings": { "quote": "My scalp finally feels calm, and my curls have never looked this healthy.", "author": "Danielle R." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,74 @@
+{% comment %}Our Story — image + "WHAT DRIVES US" copy block + CTA{% endcomment %}
+<section class="story color-surface">
+  <div class="page-width story__inner">
+    <div class="story__media">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 1000 }}"
+             alt="{{ section.settings.image.alt | default: section.settings.title | escape }}"
+             loading="lazy" width="1000"
+             height="{{ 1000 | divided_by: section.settings.image.aspect_ratio | round }}">
+      {% else %}
+        {% render 'placeholder-graphic', label: section.settings.title, variant: 'b' %}
+      {% endif %}
+    </div>
+    <div class="story__content">
+      {% if section.settings.title != blank %}
+        <h2 class="story__title">{{ section.settings.title | escape }}</h2>
+      {% endif %}
+      {% if section.settings.kicker != blank %}
+        <p class="story__kicker">{{ section.settings.kicker | escape }}</p>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="rte story__text">{{ section.settings.text }}</div>
+      {% endif %}
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link | default: '/pages/about' }}" class="btn btn--outline">{{ section.settings.button_label | escape }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Our Story",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Our Story"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "WHAT DRIVES US"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>For years, we watched people with textured hair lose hope — trapped between dry scalps, damaged hair, and products that never quite delivered. So we set out to build a better way: a simple routine that supports healthy, naturally beautiful hair from the source, so every curl, coil, and wave can live life without boundaries.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    { "name": "Our Story" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,62 @@
+{% comment %}Related products{% endcomment %}
+{% assign related_collection = blank %}
+{% if section.settings.collection != blank %}
+  {% assign related_collection = collections[section.settings.collection] %}
+{% endif %}
+
+<section class="related">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="related__title">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+    <div class="product-grid product-grid--3">
+      {% if related_collection != blank %}
+        {% assign count = 0 %}
+        {% for p in related_collection.products %}
+          {% if p.id != product.id and count < section.settings.limit %}
+            {% render 'product-card', product: p %}
+            {% assign count = count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        {% for p in collections.all.products %}
+          {% if p.id != product.id %}
+            {% render 'product-card', product: p %}
+            {% if forloop.index >= section.settings.limit %}{% break %}{% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Related products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "You may also like"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Products to show",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    }
+  ],
+  "presets": [
+    { "name": "Related products" }
+  ]
+}
+{% endschema %}

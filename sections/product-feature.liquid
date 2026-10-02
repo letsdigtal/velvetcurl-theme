@@ -1,0 +1,115 @@
+{% comment %}Product feature row — image + heading + copy + CTA, alternating sides{% endcomment %}
+{% assign product = section.settings.product %}
+<section class="feature-row{% if section.settings.reverse %} feature-row--reverse{% endif %} color-{{ section.settings.color_scheme }}">
+  <div class="page-width feature-row__inner">
+    <div class="feature-row__media">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 1000 }}"
+             alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
+             loading="lazy" width="1000"
+             height="{{ 1000 | divided_by: section.settings.image.aspect_ratio | round }}">
+      {% elsif product and product.featured_image %}
+        <img src="{{ product.featured_image | image_url: width: 1000 }}"
+             alt="{{ product.featured_image.alt | default: product.title | escape }}"
+             loading="lazy" width="1000"
+             height="{{ 1000 | divided_by: product.featured_image.aspect_ratio | round }}">
+      {% else %}
+        {% render 'placeholder-graphic', label: section.settings.heading, variant: section.settings.variant %}
+      {% endif %}
+    </div>
+    <div class="feature-row__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2 class="feature-row__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="rte feature-row__text">{{ section.settings.text }}</div>
+      {% endif %}
+      {% if product %}
+        <a href="{{ product.url }}" class="btn">{{ section.settings.button_label | default: 'general.shop_now' | t }}</a>
+      {% elsif section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="btn">{{ section.settings.button_label | escape }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product feature row",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (overrides product image)"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Step 1 — Cleanse"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Hydrate & Shine Shampoo"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>A sulfate-free cleanse with a rich, fresh lather that lifts away buildup while keeping hair soft, supple, and easy to manage — from wash day to wash day.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse",
+      "label": "Image on right",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "variant",
+      "label": "Placeholder image tint",
+      "options": [
+        { "value": "a", "label": "Sand" },
+        { "value": "b", "label": "Sage" },
+        { "value": "c", "label": "Rose" }
+      ],
+      "default": "a"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Background",
+      "options": [
+        { "value": "page", "label": "Page background" },
+        { "value": "surface", "label": "Surface" },
+        { "value": "accent", "label": "Accent tint" }
+      ],
+      "default": "page"
+    }
+  ],
+  "presets": [
+    { "name": "Product feature row" }
+  ]
+}
+{% endschema %}

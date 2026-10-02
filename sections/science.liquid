@@ -1,0 +1,110 @@
+{% comment %}The Science — image + research copy + stat callouts{% endcomment %}
+<section class="science">
+  <div class="page-width science__inner">
+    <div class="science__content">
+      {% if section.settings.title != blank %}
+        <h2 class="science__title">{{ section.settings.title | escape }}</h2>
+      {% endif %}
+      {% if section.settings.kicker != blank %}
+        <p class="science__kicker">{{ section.settings.kicker | escape }}</p>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="rte science__text">{{ section.settings.text }}</div>
+      {% endif %}
+      {% if section.blocks.size > 0 %}
+        <dl class="science__stats">
+          {% for block in section.blocks %}
+            <div class="science__stat" {{ block.shopify_attributes }}>
+              <dt class="science__stat-value">{{ block.settings.value | escape }}</dt>
+              <dd class="science__stat-label">{{ block.settings.label | escape }}</dd>
+            </div>
+          {% endfor %}
+        </dl>
+      {% endif %}
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link | default: '/pages/science' }}" class="btn btn--outline">{{ section.settings.button_label | escape }}</a>
+      {% endif %}
+    </div>
+    <div class="science__media">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 1000 }}"
+             alt="{{ section.settings.image.alt | default: section.settings.title | escape }}"
+             loading="lazy" width="1000"
+             height="{{ 1000 | divided_by: section.settings.image.aspect_ratio | round }}">
+      {% else %}
+        {% render 'placeholder-graphic', label: section.settings.title, variant: 'b' %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "The Science",
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Stat value",
+          "default": "84%"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Stat label",
+          "default": "of study participants said the system worked better than their previous routine after 4 weeks"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "The Science"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Subheading",
+      "default": "Formulated with your specific needs in mind"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Products for textured hair tend to rely on heavy additives — built on the misplaced idea that curls need extreme ingredients. In an independent study of our system, beautifully hydrated hair turned out to be about choosing what's right, not what's strongest.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "The Science",
+      "blocks": [
+        { "type": "stat" },
+        { "type": "stat", "settings": { "value": "97%", "label": "agreed the system worked better than what they had used previously by week 12" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,95 @@
+{% comment %}Main collection — banner + product grid with sorting{% endcomment %}
+<section class="collection">
+  <div class="collection__banner color-surface">
+    <div class="page-width">
+      <h1 class="collection__title">{{ collection.title }}</h1>
+      {% if collection.description != blank and section.settings.show_description %}
+        <div class="rte collection__description">{{ collection.description }}</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="page-width collection__body">
+    <div class="collection__toolbar">
+      <p class="collection__count">{{ 'general.collections.products_count' | t: count: collection.products_count }}</p>
+      {% if section.settings.show_sort %}
+        <label class="collection__sort">
+          {{ 'general.sort_by' | t }}
+          <select data-sort-select>
+            {% assign sort_options = 'manual,price-ascending,price-descending,title-ascending,title-descending,created-ascending,created-descending,best-selling' | split: ',' %}
+            {% for option in sort_options %}
+              <option value="{{ option }}" {% if collection.sort_by == option %}selected{% endif %}>{{ option | replace: '-', ' ' | capitalize }}</option>
+            {% endfor %}
+          </select>
+        </label>
+      {% endif %}
+    </div>
+
+    {% paginate collection.products by section.settings.products_per_page %}
+      {% if collection.products.size > 0 %}
+        <div class="product-grid product-grid--{{ section.settings.columns }}">
+          {% for product in collection.products %}
+            {% render 'product-card', product: product, show_quick_add: section.settings.show_quick_add %}
+          {% endfor %}
+        </div>
+        {% if paginate.pages > 1 %}
+          <nav class="pagination" aria-label="Pagination">
+            {% if paginate.previous %}
+              <a href="{{ paginate.previous.url }}" class="pagination__link">&larr; {{ 'general.previous' | t | default: 'Previous' }}</a>
+            {% endif %}
+            <span class="pagination__pages">{{ paginate.current_page }} / {{ paginate.pages }}</span>
+            {% if paginate.next %}
+              <a href="{{ paginate.next.url }}" class="pagination__link">{{ 'general.next' | t | default: 'Next' }} &rarr;</a>
+            {% endif %}
+          </nav>
+        {% endif %}
+      {% else %}
+        <p class="collection__empty">{{ 'general.collections.no_matches' | t }}</p>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main collection",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sort",
+      "label": "Show sort dropdown",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_add",
+      "label": "Show quick add buttons",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns on desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 24
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,73 @@
+{% comment %}Header — announcement bar, logo, nav, search/account/cart icons{% endcomment %}
+{% if settings.show_announcement and settings.announcement_text != blank %}
+  <div class="announcement-bar">
+    <p>{{ settings.announcement_text | escape }}</p>
+  </div>
+{% endif %}
+
+<header class="site-header{% if settings.sticky_header %} site-header--sticky{% endif %}">
+  <div class="page-width site-header__inner">
+    <button type="button" class="icon-btn site-header__menu-toggle" data-mobile-menu-open aria-label="{{ 'general.menu' | t }}">
+      {% render 'icons', icon: 'menu' %}
+    </button>
+
+    <a href="/" class="site-header__logo" aria-label="{{ shop.name }}">
+      {% if settings.logo != blank %}
+        <img src="{{ settings.logo | image_url: width: 400 }}"
+             alt="{{ shop.name | escape }}"
+             width="{{ settings.logo_width }}"
+             style="width: {{ settings.logo_width }}px">
+      {% else %}
+        <span class="site-header__logo-text">{{ shop.name }}</span>
+      {% endif %}
+    </a>
+
+    <nav class="site-header__nav" aria-label="Main">
+      {% for link in linklists[settings.menu].links %}
+        <a href="{{ link.url }}" class="site-header__nav-link">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="site-header__icons">
+      <a href="/search" class="icon-btn" aria-label="{{ 'general.search' | t }}">
+        {% render 'icons', icon: 'search' %}
+      </a>
+      <a href="/account" class="icon-btn" aria-label="{{ 'customer.account' | t }}">
+        {% render 'icons', icon: 'account' %}
+      </a>
+      <button type="button" class="icon-btn site-header__cart" data-cart-open aria-label="{{ 'general.cart_count' | t: count: cart.item_count }}">
+        {% render 'icons', icon: 'cart' %}
+        <span class="cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="MobileMenu" aria-hidden="true">
+    <div class="mobile-menu__overlay" data-mobile-menu-close></div>
+    <div class="mobile-menu__panel">
+      <div class="mobile-menu__header">
+        <span class="site-header__logo-text">{{ shop.name }}</span>
+        <button type="button" class="icon-btn" data-mobile-menu-close aria-label="{{ 'general.close' | t }}">
+          {% render 'icons', icon: 'close' %}
+        </button>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Mobile">
+        {% for link in linklists[settings.menu].links %}
+          <a href="{{ link.url }}" class="mobile-menu__link">{{ link.title }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header settings live under Theme settings > Header."
+    }
+  ]
+}
+{% endschema %}

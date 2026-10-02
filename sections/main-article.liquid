@@ -1,0 +1,37 @@
+{% comment %}Main article{% endcomment %}
+<article class="article">
+  <div class="page-width page-width--narrow">
+    <p class="article__meta">{{ article.published_at | date: '%B %d, %Y' }}{% if article.author != blank %} &middot; {{ article.author }}{% endif %}</p>
+    <h1 class="article__title">{{ article.title }}</h1>
+    {% if article.image %}
+      <img class="article__image"
+           src="{{ article.image | image_url: width: 1200 }}"
+           alt="{{ article.image.alt | default: article.title | escape }}"
+           width="1200"
+           height="{{ 1200 | divided_by: article.image.aspect_ratio | round }}">
+    {% endif %}
+    <div class="rte article__content">{{ article.content }}</div>
+    {% if section.settings.show_share %}
+      <p class="article__share">
+        <span>{{ 'general.share' | t }}:</span>
+        <a href="https://www.facebook.com/sharer.php?u={{ shop.url }}{{ article.url }}" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://twitter.com/share?url={{ shop.url }}{{ article.url }}&text={{ article.title | url_param_escape }}" target="_blank" rel="noopener">X</a>
+      </p>
+    {% endif %}
+    <a href="{{ blog.url }}" class="btn btn--outline">&larr; {{ blog.title }}</a>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Main article",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_share",
+      "label": "Show share links",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

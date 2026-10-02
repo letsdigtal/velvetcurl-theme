@@ -1,0 +1,15 @@
+{% comment %}404 page{% endcomment %}
+<section class="not-found">
+  <div class="page-width page-width--narrow not-found__inner">
+    <h1 class="not-found__title">{{ 'general.page_not_found' | t }}</h1>
+    <p class="not-found__text">{{ 'general.no_results' | t }}</p>
+    <a href="/" class="btn">{{ 'general.back_to_home' | t }}</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "404",
+  "settings": []
+}
+{% endschema %}

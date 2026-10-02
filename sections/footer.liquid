@@ -1,0 +1,81 @@
+{% comment %}Footer — brand/contact block, link columns, social, bottom bar{% endcomment %}
+<footer class="site-footer">
+  <div class="page-width site-footer__top">
+    <div class="site-footer__brand">
+      <p class="site-footer__company">{{ settings.footer_company | escape }}</p>
+      {% if settings.footer_address != blank %}
+        <address class="site-footer__address">{{ settings.footer_address | newline_to_br }}</address>
+      {% endif %}
+      {% if settings.footer_phone != blank %}
+        <p class="site-footer__contact"><strong>Home Office:</strong> <a href="tel:{{ settings.footer_phone | remove: '-' | remove: ' ' }}">{{ settings.footer_phone | escape }}</a></p>
+      {% endif %}
+      {% if settings.footer_email != blank %}
+        <p class="site-footer__contact"><strong>Email:</strong> <a href="mailto:{{ settings.footer_email | escape }}">{{ settings.footer_email | escape }}</a></p>
+      {% endif %}
+    </div>
+
+    <div class="site-footer__links">
+      {% for block in section.blocks %}
+        <div class="site-footer__column">
+          <h3 class="site-footer__column-title">{{ block.settings.title | escape }}</h3>
+          <ul class="site-footer__menu">
+            {% for link in block.settings.menu.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="page-width site-footer__bottom">
+    <p class="site-footer__copyright">&copy; {{ 'now' | date: '%Y' }} {{ settings.footer_company | escape }}. {{ 'general.all_rights' | t | default: 'All rights reserved.' }}</p>
+    {% if section.settings.show_payment_icons %}
+      <div class="site-footer__payment">
+        {% for type in shop.enabled_payment_types %}
+          {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Link column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Column heading",
+          "default": "Shop"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "default": "footer"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "menu", "settings": { "title": "Shop" } },
+      { "type": "menu", "settings": { "title": "About" } }
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,40 @@
+{% comment %}Product card for grids and related products{% endcomment %}
+<div class="product-card">
+  <a href="{{ product.url }}" class="product-card__media">
+    {% if product.featured_image %}
+      <img
+        src="{{ product.featured_image | image_url: width: 600 }}"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        loading="lazy"
+        width="600"
+        height="{{ 600 | divided_by: product.featured_image.aspect_ratio | round }}">
+    {% else %}
+      {% render 'placeholder-graphic', label: product.title, variant: 'b' %}
+    {% endif %}
+    {% if product.compare_at_price > product.price %}
+      <span class="badge badge--sale">{{ 'general.sale' | t | default: 'Sale' }}</span>
+    {% endif %}
+    {% unless product.available %}
+      <span class="badge badge--soldout">{{ 'general.sold_out' | t }}</span>
+    {% endunless %}
+  </a>
+  <div class="product-card__info">
+    <h3 class="product-card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    <p class="product-card__price">
+      {% if product.compare_at_price > product.price %}
+        <span class="price--sale">{{ product.price | money }}</span>
+        <s class="price--compare">{{ product.compare_at_price | money }}</s>
+      {% else %}
+        {{ product.price | money }}
+      {% endif %}
+    </p>
+    {% if show_quick_add %}
+      <form method="post" action="/cart/add" class="product-card__quick-add" data-quick-add>
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="btn btn--small" {% unless product.available %}disabled{% endunless %}>
+          {% if product.available %}{{ 'general.add_to_cart' | t }}{% else %}{{ 'general.sold_out' | t }}{% endif %}
+        </button>
+      </form>
+    {% endif %}
+  </div>
+</div>

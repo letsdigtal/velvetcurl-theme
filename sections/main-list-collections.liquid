@@ -1,0 +1,46 @@
+{% comment %}List all collections{% endcomment %}
+<section class="collection">
+  <div class="collection__banner color-surface">
+    <div class="page-width">
+      <h1 class="collection__title">{{ section.settings.title | escape }}</h1>
+    </div>
+  </div>
+  <div class="page-width collection__body">
+    <div class="product-grid product-grid--3">
+      {% for collection in collections %}
+        {% unless collection.handle == 'frontpage' and collection.all_products_count == 0 %}
+          <div class="product-card">
+            <a href="{{ collection.url }}" class="product-card__media">
+              {% if collection.featured_image %}
+                <img src="{{ collection.featured_image | image_url: width: 600 }}"
+                     alt="{{ collection.title | escape }}"
+                     loading="lazy" width="600"
+                     height="{{ 600 | divided_by: collection.featured_image.aspect_ratio | round }}">
+              {% else %}
+                {% render 'placeholder-graphic', label: collection.title, variant: 'b' %}
+              {% endif %}
+            </a>
+            <div class="product-card__info">
+              <h3 class="product-card__title"><a href="{{ collection.url }}">{{ collection.title }}</a></h3>
+              <p class="product-card__price">{{ 'general.collections.products_count' | t: count: collection.products_count }}</p>
+            </div>
+          </div>
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "List collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Collections"
+    }
+  ]
+}
+{% endschema %}

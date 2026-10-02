@@ -1,0 +1,27 @@
+{% comment %}
+  Placeholder graphic for demo imagery — pure CSS/SVG, no external assets.
+  Usage: {% render 'placeholder-graphic', label: 'Shampoo', variant: 'a' %}
+  Variants: a, b, c (different gradient tints)
+{% endcomment %}
+{% assign _label = label | default: 'VelvetCurl' %}
+{% assign _variant = variant | default: 'a' %}
+<div class="placeholder-graphic placeholder-graphic--{{ _variant }}" role="img" aria-label="{{ _label | escape }}">
+  <svg viewBox="0 0 600 750" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="ph-{{ _variant }}" x1="0" y1="0" x2="1" y2="1">
+        {% if _variant == 'a' %}
+          <stop offset="0" stop-color="#EAD9C4"/><stop offset="1" stop-color="#C9A87F"/>
+        {% elsif _variant == 'b' %}
+          <stop offset="0" stop-color="#DCE3D5"/><stop offset="1" stop-color="#A8B89A"/>
+        {% else %}
+          <stop offset="0" stop-color="#EAD3CE"/><stop offset="1" stop-color="#C99A8E"/>
+        {% endif %}
+      </linearGradient>
+    </defs>
+    <rect width="600" height="750" fill="url(#ph-{{ _variant }})"/>
+    <circle cx="300" cy="330" r="120" fill="#FFFFFF" opacity="0.35"/>
+    <rect x="255" y="300" width="90" height="150" rx="14" fill="#FFFFFF" opacity="0.75"/>
+    <rect x="270" y="270" width="60" height="34" rx="8" fill="#FFFFFF" opacity="0.85"/>
+    <text x="300" y="530" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#4A3826" opacity="0.8">{{ _label }}</text>
+  </svg>
+</div>

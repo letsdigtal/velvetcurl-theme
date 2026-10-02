@@ -1,0 +1,84 @@
+{% comment %}Product ingredients — "What's Inside" section with ingredient blocks{% endcomment %}
+<section class="ingredients color-surface">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="ingredients__title">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+    {% if section.settings.intro != blank %}
+      <div class="rte ingredients__intro">{{ section.settings.intro }}</div>
+    {% endif %}
+    <div class="ingredients__grid">
+      {% for block in section.blocks %}
+        <article class="ingredient" {{ block.shopify_attributes }}>
+          <div class="ingredient__media">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 600 }}"
+                   alt="{{ block.settings.image.alt | default: block.settings.name | escape }}"
+                   loading="lazy" width="600"
+                   height="{{ 600 | divided_by: block.settings.image.aspect_ratio | round }}">
+            {% else %}
+              {% render 'placeholder-graphic', label: block.settings.name, variant: 'b' %}
+            {% endif %}
+          </div>
+          <h3 class="ingredient__name">{{ block.settings.name | escape }}</h3>
+          <div class="rte ingredient__text">{{ block.settings.text }}</div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product ingredients",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "What's Inside"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro text",
+      "default": "<p>We crafted our formula with only the best ingredients, so it is not only effective but smells and feels exceptional during use.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Ingredient name",
+          "default": "Shea Butter"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>A rich, natural emollient that seals in moisture and leaves hair soft and manageable.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product ingredients",
+      "blocks": [
+        { "type": "ingredient", "settings": { "name": "Coconut Oil", "text": "<p>Adds natural, protective moisture to the scalp and hair, reducing breakage while keeping hair comfortable and hydrated.</p>" } },
+        { "type": "ingredient", "settings": { "name": "Aloe Leaf", "text": "<p>A soothing botanical that calms the scalp and helps hair retain lightweight moisture.</p>" } },
+        { "type": "ingredient", "settings": { "name": "Oat Protein", "text": "<p>Helps strengthen each strand, improving manageability and resilience over time.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

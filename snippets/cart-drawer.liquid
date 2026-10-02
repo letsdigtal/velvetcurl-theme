@@ -1,0 +1,21 @@
+{% comment %}Cart drawer — slides in from the right, driven by theme.js{% endcomment %}
+<div class="cart-drawer" id="CartDrawer" aria-hidden="true" role="dialog" aria-label="{{ 'general.your_cart' | t }}">
+  <div class="cart-drawer__overlay" data-cart-close></div>
+  <aside class="cart-drawer__panel">
+    <div class="cart-drawer__header">
+      <h2>{{ 'general.your_cart' | t }}</h2>
+      <button type="button" class="icon-btn" data-cart-close aria-label="{{ 'general.close' | t }}">
+        {% render 'icons', icon: 'close' %}
+      </button>
+    </div>
+    <div class="cart-drawer__body" data-cart-items></div>
+    <div class="cart-drawer__footer" data-cart-footer>
+      <p class="cart-drawer__subtotal">
+        <span>{{ 'general.subtotal' | t }}</span>
+        <span data-cart-subtotal>{{ cart.total_price | money }}</span>
+      </p>
+      <a href="/checkout" class="btn btn--full">{{ 'general.checkout' | t }}</a>
+      <button type="button" class="cart-drawer__view-cart" data-cart-close>{{ 'general.continue_shopping' | t }}</button>
+    </div>
+  </aside>
+</div>
