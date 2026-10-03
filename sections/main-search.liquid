@@ -8,7 +8,7 @@
         {{ 'general.search' | t }}
       {% endif %}
     </h1>
-    <form action="/search" method="get" class="search-page__form">
+    <form action="{{ routes.search_url }}" method="get" class="search-page__form">
       <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search' | t }}..." aria-label="{{ 'general.search' | t }}">
       <button type="submit" class="btn">{{ 'general.search' | t }}</button>
     </form>

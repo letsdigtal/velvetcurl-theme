@@ -22,7 +22,7 @@
       <div class="hero__subtext rte">{{ section.settings.subtext }}</div>
     {% endif %}
     {% if section.settings.button_label != blank %}
-      <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="btn btn--large">{{ section.settings.button_label | escape }}</a>
+      <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="btn btn--large">{{ section.settings.button_label | escape }}</a>
     {% endif %}
   </div>
 </section>

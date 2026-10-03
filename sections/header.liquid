@@ -11,12 +11,13 @@
       {% render 'icons', icon: 'menu' %}
     </button>
 
-    <a href="/" class="site-header__logo" aria-label="{{ shop.name }}">
+    <a href="{{ routes.root_url }}" class="site-header__logo" aria-label="{{ shop.name }}">
       {% if settings.logo != blank %}
         <img src="{{ settings.logo | image_url: width: 400 }}"
              alt="{{ shop.name | escape }}"
              width="{{ settings.logo_width }}"
-             style="width: {{ settings.logo_width }}px">
+             height="{{ settings.logo_width | divided_by: settings.logo.aspect_ratio | round }}"
+             style="width: {{ settings.logo_width }}px; height: auto;">
       {% else %}
         <span class="site-header__logo-text">{{ shop.name }}</span>
       {% endif %}
@@ -29,10 +30,10 @@
     </nav>
 
     <div class="site-header__icons">
-      <a href="/search" class="icon-btn" aria-label="{{ 'general.search' | t }}">
+      <a href="{{ routes.search_url }}" class="icon-btn" aria-label="{{ 'general.search' | t }}">
         {% render 'icons', icon: 'search' %}
       </a>
-      <a href="/account" class="icon-btn" aria-label="{{ 'customer.account' | t }}">
+      <a href="{{ routes.account_url }}" class="icon-btn" aria-label="{{ 'customer.account' | t }}">
         {% render 'icons', icon: 'account' %}
       </a>
       <button type="button" class="icon-btn site-header__cart" data-cart-open aria-label="{{ 'general.cart_count' | t: count: cart.item_count }}">
@@ -63,6 +64,9 @@
 {% schema %}
 {
   "name": "Header",
+  "enabled_on": {
+    "groups": ["header"]
+  },
   "settings": [
     {
       "type": "header",

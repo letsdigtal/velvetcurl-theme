@@ -1,5 +1,5 @@
 {% comment %}Product feature row — image + heading + copy + CTA, alternating sides{% endcomment %}
-{% assign product = section.settings.product %}
+{% assign feature_product = section.settings.product %}
 <section class="feature-row{% if section.settings.reverse %} feature-row--reverse{% endif %} color-{{ section.settings.color_scheme }}">
   <div class="page-width feature-row__inner">
     <div class="feature-row__media">
@@ -8,11 +8,11 @@
              alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
              loading="lazy" width="1000"
              height="{{ 1000 | divided_by: section.settings.image.aspect_ratio | round }}">
-      {% elsif product and product.featured_image %}
-        <img src="{{ product.featured_image | image_url: width: 1000 }}"
-             alt="{{ product.featured_image.alt | default: product.title | escape }}"
+      {% elsif feature_product and feature_product.featured_image %}
+        <img src="{{ feature_product.featured_image | image_url: width: 1000 }}"
+             alt="{{ feature_product.featured_image.alt | default: feature_product.title | escape }}"
              loading="lazy" width="1000"
-             height="{{ 1000 | divided_by: product.featured_image.aspect_ratio | round }}">
+             height="{{ 1000 | divided_by: feature_product.featured_image.aspect_ratio | round }}">
       {% else %}
         {% render 'placeholder-graphic', label: section.settings.heading, variant: section.settings.variant %}
       {% endif %}
@@ -27,10 +27,10 @@
       {% if section.settings.text != blank %}
         <div class="rte feature-row__text">{{ section.settings.text }}</div>
       {% endif %}
-      {% if product %}
-        <a href="{{ product.url }}" class="btn">{{ section.settings.button_label | default: 'general.shop_now' | t }}</a>
+      {% if feature_product %}
+        <a href="{{ feature_product.url }}" class="btn">{% if section.settings.button_label != blank %}{{ section.settings.button_label | escape }}{% else %}{{ 'general.shop_now' | t }}{% endif %}</a>
       {% elsif section.settings.button_label != blank %}
-        <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="btn">{{ section.settings.button_label | escape }}</a>
+        <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="btn">{{ section.settings.button_label | escape }}</a>
       {% endif %}
     </div>
   </div>

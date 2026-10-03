@@ -29,7 +29,7 @@
       {% endif %}
     </p>
     {% if show_quick_add %}
-      <form method="post" action="/cart/add" class="product-card__quick-add" data-quick-add>
+      <form method="post" action="{{ routes.cart_add_url }}" class="product-card__quick-add" data-quick-add>
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
         <button type="submit" class="btn btn--small" {% unless product.available %}disabled{% endunless %}>
           {% if product.available %}{{ 'general.add_to_cart' | t }}{% else %}{{ 'general.sold_out' | t }}{% endif %}
