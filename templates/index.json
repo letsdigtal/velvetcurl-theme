@@ -1,1 +1,184 @@
-{"layout":"theme","order":["header","hero","feature_shampoo","feature_conditioner","feature_lotion","story","testimonial","science","press","newsletter","footer"],"sections":{"feature_conditioner":{"blocks":[],"disabled":false,"settings":{"button_label":"Shop Now","color_scheme":"surface","eyebrow":"Step 2 — Condition","heading":"Hydrate & Shine Conditioner","reverse":true,"text":"<p>Botanical oils and plant proteins work together to detangle, add luster, and strengthen every strand — for curls, coils, and waves that feel resilient and look radiant.</p>","variant":"b"},"type":"product-feature"},"feature_lotion":{"blocks":[],"disabled":false,"settings":{"button_label":"Shop Now","color_scheme":"page","eyebrow":"Step 3 — Soothe","heading":"Soothing Scalp Lotion","reverse":false,"text":"<p>A weightless daily lotion for the scalp, made with shea and calming botanicals. Apply after washing or on troublesome areas for steady, lasting comfort.</p>","variant":"c"},"type":"product-feature"},"feature_shampoo":{"blocks":[],"disabled":false,"settings":{"button_label":"Shop Now","color_scheme":"page","eyebrow":"Step 1 — Cleanse","heading":"Hydrate & Shine Shampoo","reverse":false,"text":"<p>A sulfate-free cleanse with a rich, fresh-smelling lather that lifts away buildup while keeping hair soft, supple, and easy to manage — from wash day to wash day.</p>","variant":"a"},"type":"product-feature"},"footer":{"blocks":[{"settings":{"menu":"footer","title":"Shop"},"type":"menu"},{"settings":{"menu":"footer","title":"About"},"type":"menu"}],"disabled":false,"settings":{"show_payment_icons":true},"type":"footer"},"header":{"blocks":[],"disabled":false,"settings":{},"type":"header"},"hero":{"blocks":[],"disabled":false,"settings":{"alignment":"center","button_label":"Shop Now","eyebrow":"Dermatologist-developed hair care","heading":"Gentle Care for the Hair You Were Born With","height_desktop":650,"subtext":"<p>Thoughtfully chosen ingredients help calm dryness and itching while nourishing textured hair from root to tip — so every wash day feels like a fresh start.</p>"},"type":"hero"},"newsletter":{"blocks":[],"disabled":false,"settings":{"heading":"Join our community","text":"<p>Sign up for hair-care tips, new product announcements, and exclusive offers.</p>"},"type":"newsletter"},"press":{"blocks":[{"settings":{"name":"The Beauty Edit"},"type":"logo"},{"settings":{"name":"Curl Magazine"},"type":"logo"},{"settings":{"name":"Modern Hair"},"type":"logo"},{"settings":{"name":"Glow Daily"},"type":"logo"},{"settings":{"name":"Texture Talk"},"type":"logo"},{"settings":{"name":"Natural Beauty Weekly"},"type":"logo"}],"disabled":false,"settings":{"quote":"VelvetCurl Hydrate & Shine Shampoo is the go-to pick for the best dry-scalp shampoo!","title":"In The Press"},"type":"press-logos"},"science":{"blocks":[{"settings":{"label":"of study participants said the system worked better than their previous routine after 4 weeks","value":"84%"},"type":"stat"},{"settings":{"label":"agreed the system worked better than what they had used previously by week 12","value":"97%"},"type":"stat"}],"disabled":false,"settings":{"button_label":"Learn More","kicker":"Formulated with your specific needs in mind","text":"<p>Products for textured hair tend to rely on heavy additives — built on the misplaced idea that curls need extreme ingredients. In an independent study of our system, beautifully hydrated hair turned out to be about choosing what's right, not what's strongest.</p>","title":"The Science"},"type":"science"},"story":{"blocks":[],"disabled":false,"settings":{"button_label":"Learn More","kicker":"WHAT DRIVES US","text":"<p>For years, we watched people with textured hair lose hope — trapped between dry scalps, damaged hair, and products that never quite delivered. So we set out to build a better way: a simple routine that supports healthy, naturally beautiful hair from the source, so every curl, coil, and wave can live life without boundaries.</p>","title":"Our Story"},"type":"story"},"testimonial":{"blocks":[{"settings":{"author":"Elizabeth B.","quote":"I feel like VelvetCurl helped me love my hair again."},"type":"quote"},{"settings":{"author":"Danielle R.","quote":"My scalp finally feels calm, and my curls have never looked this healthy."},"type":"quote"}],"disabled":false,"settings":{},"type":"testimonial"}}}
+{
+  "layout": "theme",
+  "sections": {
+    "feature_conditioner": {
+      "type": "product-feature",
+      "settings": {
+        "button_label": "Shop Now",
+        "color_scheme": "surface",
+        "eyebrow": "Step 2 — Condition",
+        "heading": "Hydrate & Shine Conditioner",
+        "reverse": true,
+        "text": "<p>Botanical oils and plant proteins work together to detangle, add luster, and strengthen every strand — for curls, coils, and waves that feel resilient and look radiant.</p>",
+        "variant": "b"
+      }
+    },
+    "feature_lotion": {
+      "type": "product-feature",
+      "settings": {
+        "button_label": "Shop Now",
+        "color_scheme": "page",
+        "eyebrow": "Step 3 — Soothe",
+        "heading": "Soothing Scalp Lotion",
+        "reverse": false,
+        "text": "<p>A weightless daily lotion for the scalp, made with shea and calming botanicals. Apply after washing or on troublesome areas for steady, lasting comfort.</p>",
+        "variant": "c"
+      }
+    },
+    "feature_shampoo": {
+      "type": "product-feature",
+      "settings": {
+        "button_label": "Shop Now",
+        "color_scheme": "page",
+        "eyebrow": "Step 1 — Cleanse",
+        "heading": "Hydrate & Shine Shampoo",
+        "reverse": false,
+        "text": "<p>A sulfate-free cleanse with a rich, fresh-smelling lather that lifts away buildup while keeping hair soft, supple, and easy to manage — from wash day to wash day.</p>",
+        "variant": "a"
+      }
+    },
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "alignment": "center",
+        "button_label": "Shop Now",
+        "eyebrow": "Dermatologist-developed hair care",
+        "heading": "Gentle Care for the Hair You Were Born With",
+        "height_desktop": 650,
+        "subtext": "<p>Thoughtfully chosen ingredients help calm dryness and itching while nourishing textured hair from root to tip — so every wash day feels like a fresh start.</p>"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Join our community",
+        "text": "<p>Sign up for hair-care tips, new product announcements, and exclusive offers.</p>"
+      }
+    },
+    "press": {
+      "type": "press-logos",
+      "settings": {
+        "quote": "VelvetCurl Hydrate & Shine Shampoo is the go-to pick for the best dry-scalp shampoo!",
+        "title": "In The Press"
+      },
+      "blocks": {
+        "logo-0": {
+          "type": "logo",
+          "settings": {
+            "name": "The Beauty Edit"
+          }
+        },
+        "logo-1": {
+          "type": "logo",
+          "settings": {
+            "name": "Curl Magazine"
+          }
+        },
+        "logo-2": {
+          "type": "logo",
+          "settings": {
+            "name": "Modern Hair"
+          }
+        },
+        "logo-3": {
+          "type": "logo",
+          "settings": {
+            "name": "Glow Daily"
+          }
+        },
+        "logo-4": {
+          "type": "logo",
+          "settings": {
+            "name": "Texture Talk"
+          }
+        },
+        "logo-5": {
+          "type": "logo",
+          "settings": {
+            "name": "Natural Beauty Weekly"
+          }
+        }
+      },
+      "block_order": [
+        "logo-0",
+        "logo-1",
+        "logo-2",
+        "logo-3",
+        "logo-4",
+        "logo-5"
+      ]
+    },
+    "science": {
+      "type": "science",
+      "settings": {
+        "button_label": "Learn More",
+        "kicker": "Formulated with your specific needs in mind",
+        "text": "<p>Products for textured hair tend to rely on heavy additives — built on the misplaced idea that curls need extreme ingredients. In an independent study of our system, beautifully hydrated hair turned out to be about choosing what's right, not what's strongest.</p>",
+        "title": "The Science"
+      },
+      "blocks": {
+        "stat-0": {
+          "type": "stat",
+          "settings": {
+            "label": "of study participants said the system worked better than their previous routine after 4 weeks",
+            "value": "84%"
+          }
+        },
+        "stat-1": {
+          "type": "stat",
+          "settings": {
+            "label": "agreed the system worked better than what they had used previously by week 12",
+            "value": "97%"
+          }
+        }
+      },
+      "block_order": [
+        "stat-0",
+        "stat-1"
+      ]
+    },
+    "story": {
+      "type": "story",
+      "settings": {
+        "button_label": "Learn More",
+        "kicker": "WHAT DRIVES US",
+        "text": "<p>For years, we watched people with textured hair lose hope — trapped between dry scalps, damaged hair, and products that never quite delivered. So we set out to build a better way: a simple routine that supports healthy, naturally beautiful hair from the source, so every curl, coil, and wave can live life without boundaries.</p>",
+        "title": "Our Story"
+      }
+    },
+    "testimonial": {
+      "type": "testimonial",
+      "blocks": {
+        "quote-0": {
+          "type": "quote",
+          "settings": {
+            "author": "Elizabeth B.",
+            "quote": "I feel like VelvetCurl helped me love my hair again."
+          }
+        },
+        "quote-1": {
+          "type": "quote",
+          "settings": {
+            "author": "Danielle R.",
+            "quote": "My scalp finally feels calm, and my curls have never looked this healthy."
+          }
+        }
+      },
+      "block_order": [
+        "quote-0",
+        "quote-1"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "feature_shampoo",
+    "feature_conditioner",
+    "feature_lotion",
+    "story",
+    "testimonial",
+    "science",
+    "press",
+    "newsletter"
+  ]
+}

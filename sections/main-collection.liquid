@@ -11,7 +11,7 @@
 
   <div class="page-width collection__body">
     <div class="collection__toolbar">
-      <p class="collection__count">{{ 'general.collections.products_count' | t: count: collection.products_count }}</p>
+      <p class="collection__count">{{ 'collections.general.products_count' | t: count: collection.products_count }}</p>
       {% if section.settings.show_sort %}
         <label class="collection__sort">
           {{ 'general.sort_by' | t }}
@@ -44,7 +44,7 @@
           </nav>
         {% endif %}
       {% else %}
-        <p class="collection__empty">{{ 'general.collections.no_matches' | t }}</p>
+        <p class="collection__empty">{{ 'collections.general.no_matches' | t }}</p>
       {% endif %}
     {% endpaginate %}
   </div>

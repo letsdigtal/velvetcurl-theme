@@ -1,1 +1,18 @@
-{"layout":"theme","order":["header","main","footer"],"sections":{"footer":{"blocks":[{"settings":{"menu":"footer","title":"Shop"},"type":"menu"},{"settings":{"menu":"footer","title":"About"},"type":"menu"}],"disabled":false,"settings":{"show_payment_icons":true},"type":"footer"},"header":{"blocks":[],"disabled":false,"settings":{},"type":"header"},"main":{"blocks":[],"disabled":false,"settings":{"columns":3,"products_per_page":24,"show_description":true,"show_quick_add":false,"show_sort":true},"type":"main-collection"}}}
+{
+  "layout": "theme",
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "columns": 3,
+        "products_per_page": 24,
+        "show_description": true,
+        "show_quick_add": false,
+        "show_sort": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

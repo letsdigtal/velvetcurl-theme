@@ -1,1 +1,64 @@
-{"layout":"theme","order":["header","main","ingredients","related","footer"],"sections":{"footer":{"blocks":[{"settings":{"menu":"footer","title":"Shop"},"type":"menu"},{"settings":{"menu":"footer","title":"About"},"type":"menu"}],"disabled":false,"settings":{"show_payment_icons":true},"type":"footer"},"header":{"blocks":[],"disabled":false,"settings":{},"type":"header"},"ingredients":{"blocks":[{"settings":{"image":null,"name":"Coconut Oil","text":"<p>Adds natural, protective moisture to the scalp and hair, reducing breakage while keeping hair comfortable and hydrated.</p>"},"type":"ingredient"},{"settings":{"image":null,"name":"Aloe Leaf","text":"<p>A soothing botanical that calms the scalp and helps hair retain lightweight moisture.</p>"},"type":"ingredient"},{"settings":{"image":null,"name":"Oat Protein","text":"<p>Helps strengthen each strand, improving manageability and resilience over time.</p>"},"type":"ingredient"}],"disabled":false,"settings":{"intro":"<p>We crafted our formula with only the best ingredients, so it is not only effective but smells and feels exceptional during use.</p>","title":"What's Inside"},"type":"product-ingredients"},"main":{"blocks":[],"disabled":false,"settings":{"show_accordion":true,"show_description":true,"show_vendor":false,"size_note":"8.5 fl. oz. (250 ml)"},"type":"main-product"},"related":{"blocks":[],"disabled":false,"settings":{"limit":3,"title":"You may also like"},"type":"related-products"}}}
+{
+  "layout": "theme",
+  "sections": {
+    "ingredients": {
+      "type": "product-ingredients",
+      "settings": {
+        "intro": "<p>We crafted our formula with only the best ingredients, so it is not only effective but smells and feels exceptional during use.</p>",
+        "title": "What's Inside"
+      },
+      "blocks": {
+        "ingredient-0": {
+          "type": "ingredient",
+          "settings": {
+            "image": null,
+            "name": "Coconut Oil",
+            "text": "<p>Adds natural, protective moisture to the scalp and hair, reducing breakage while keeping hair comfortable and hydrated.</p>"
+          }
+        },
+        "ingredient-1": {
+          "type": "ingredient",
+          "settings": {
+            "image": null,
+            "name": "Aloe Leaf",
+            "text": "<p>A soothing botanical that calms the scalp and helps hair retain lightweight moisture.</p>"
+          }
+        },
+        "ingredient-2": {
+          "type": "ingredient",
+          "settings": {
+            "image": null,
+            "name": "Oat Protein",
+            "text": "<p>Helps strengthen each strand, improving manageability and resilience over time.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "ingredient-0",
+        "ingredient-1",
+        "ingredient-2"
+      ]
+    },
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "show_accordion": true,
+        "show_description": true,
+        "show_vendor": false,
+        "size_note": "8.5 fl. oz. (250 ml)"
+      }
+    },
+    "related": {
+      "type": "related-products",
+      "settings": {
+        "limit": 3,
+        "title": "You may also like"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ingredients",
+    "related"
+  ]
+}

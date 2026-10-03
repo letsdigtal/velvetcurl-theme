@@ -4,7 +4,7 @@
     <h1 class="cart-page__title">{{ 'general.your_cart' | t }}</h1>
 
     {% if cart.item_count > 0 %}
-      <form action="/cart" method="post" class="cart-page__form" novalidate>
+      <form action="{{ routes.cart_url }}" method="post" class="cart-page__form" novalidate>
         <ul class="cart-page__items">
           {% for item in cart.items %}
             <li class="cart-item">
@@ -28,7 +28,7 @@
                   <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" data-quantity-input aria-label="{{ 'general.quantity' | t }}">
                   <button type="button" data-quantity-plus aria-label="Increase quantity">{% render 'icons', icon: 'plus' %}</button>
                 </div>
-                <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="cart-item__remove">{{ 'general.remove' | t }}</a>
+                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="cart-item__remove">{{ 'general.remove' | t }}</a>
               </div>
               <p class="cart-item__price">{{ item.final_line_price | money }}</p>
             </li>
@@ -42,13 +42,13 @@
           </p>
           <p class="cart-page__note">{{ 'general.free_shipping' | t }}</p>
           <button type="submit" name="checkout" class="btn btn--large btn--full">{{ 'general.checkout' | t }}</button>
-          <a href="/collections/all" class="cart-page__continue">{{ 'general.continue_shopping' | t }}</a>
+          <a href="{{ routes.all_products_collection_url }}" class="cart-page__continue">{{ 'general.continue_shopping' | t }}</a>
         </div>
       </form>
     {% else %}
       <div class="cart-page__empty">
         <p>{{ 'general.empty_cart' | t }}</p>
-        <a href="/collections/all" class="btn">{{ 'general.continue_shopping' | t }}</a>
+        <a href="{{ routes.all_products_collection_url }}" class="btn">{{ 'general.continue_shopping' | t }}</a>
       </div>
     {% endif %}
   </div>

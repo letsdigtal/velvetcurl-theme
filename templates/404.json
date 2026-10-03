@@ -1,1 +1,11 @@
-{"layout":"theme","order":["header","main","footer"],"sections":{"footer":{"blocks":[],"disabled":false,"settings":{"show_payment_icons":false},"type":"footer"},"header":{"blocks":[],"disabled":false,"settings":{},"type":"header"},"main":{"blocks":[],"disabled":false,"settings":{},"type":"main-404"}}}
+{
+  "layout": "theme",
+  "sections": {
+    "main": {
+      "type": "main-404"
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
